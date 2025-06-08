@@ -16,57 +16,225 @@ export default function Hero() {
     canvas.width = window.innerWidth
     canvas.height = window.innerHeight
 
-    const particles: Particle[] = []
-    const particleCount = 100
+    let animationId: number
+    let time = 0
 
-    class Particle {
+    // TikTok-style floating elements
+    class TikTokElement {
       x: number
       y: number
       size: number
-      speedX: number
-      speedY: number
+      speed: number
+      opacity: number
+      type: "heart" | "music" | "star" | "sparkle"
+      color: string
+      angle: number
+      drift: number
 
       constructor() {
         this.x = Math.random() * canvas.width
-        this.y = Math.random() * canvas.height
-        this.size = Math.random() * 2 + 0.1
-        this.speedX = Math.random() * 2 - 1
-        this.speedY = Math.random() * 2 - 1
+        this.y = canvas.height + 50
+        this.size = Math.random() * 20 + 10
+        this.speed = Math.random() * 0.5 + 0.3
+        this.opacity = Math.random() * 0.6 + 0.2
+        this.type = ["heart", "music", "star", "sparkle"][Math.floor(Math.random() * 4)] as any
+        this.color = this.getColor()
+        this.angle = Math.random() * Math.PI * 2
+        this.drift = Math.random() * 0.02 + 0.01
+      }
+
+      getColor() {
+        switch (this.type) {
+          case "heart":
+            return "#ff0050" // TikTok red/pink
+          case "music":
+            return "#25f4ee" // TikTok cyan
+          case "star":
+            return "#fe2c55" // TikTok pink
+          case "sparkle":
+            return "#ffffff" // White
+          default:
+            return "#ff0050"
+        }
       }
 
       update() {
-        this.x += this.speedX
-        this.y += this.speedY
+        this.y -= this.speed
+        this.x += Math.sin(this.angle) * 0.5
+        this.angle += this.drift
 
-        if (this.x > canvas.width) this.x = 0
-        if (this.x < 0) this.x = canvas.width
-        if (this.y > canvas.height) this.y = 0
-        if (this.y < 0) this.y = canvas.height
+        // Gentle fade as it rises
+        if (this.y < canvas.height * 0.3) {
+          this.opacity *= 0.995
+        }
+
+        // Reset when off screen
+        if (this.y < -50 || this.opacity < 0.01) {
+          this.y = canvas.height + 50
+          this.x = Math.random() * canvas.width
+          this.opacity = Math.random() * 0.6 + 0.2
+        }
       }
 
       draw() {
         if (!ctx) return
-        ctx.fillStyle = "rgba(255, 255, 255, 0.5)"
+
+        ctx.save()
+        ctx.translate(this.x, this.y)
+        ctx.rotate(this.angle * 0.1)
+        ctx.globalAlpha = this.opacity
+
+        switch (this.type) {
+          case "heart":
+            this.drawHeart()
+            break
+          case "music":
+            this.drawMusicNote()
+            break
+          case "star":
+            this.drawStar()
+            break
+          case "sparkle":
+            this.drawSparkle()
+            break
+        }
+
+        ctx.restore()
+      }
+
+      drawHeart() {
+        if (!ctx) return
+        ctx.fillStyle = this.color
         ctx.beginPath()
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
+        const size = this.size * 0.5
+        ctx.moveTo(0, size * 0.3)
+        ctx.bezierCurveTo(-size * 0.5, -size * 0.3, -size, size * 0.1, 0, size)
+        ctx.bezierCurveTo(size, size * 0.1, size * 0.5, -size * 0.3, 0, size * 0.3)
         ctx.fill()
       }
-    }
 
-    for (let i = 0; i < particleCount; i++) {
-      particles.push(new Particle())
-    }
+      drawMusicNote() {
+        if (!ctx) return
+        ctx.fillStyle = this.color
+        ctx.strokeStyle = this.color
+        ctx.lineWidth = 2
+        const size = this.size * 0.4
 
-    function animate() {
-      if (!ctx) return
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
+        // Note head
+        ctx.beginPath()
+        ctx.arc(-size * 0.3, size * 0.5, size * 0.3, 0, Math.PI * 2)
+        ctx.fill()
 
-      for (const particle of particles) {
-        particle.update()
-        particle.draw()
+        // Note stem
+        ctx.beginPath()
+        ctx.moveTo(0, size * 0.5)
+        ctx.lineTo(0, -size * 0.8)
+        ctx.stroke()
+
+        // Note flag
+        ctx.beginPath()
+        ctx.moveTo(0, -size * 0.8)
+        ctx.quadraticCurveTo(size * 0.5, -size * 0.6, size * 0.3, -size * 0.3)
+        ctx.stroke()
       }
 
-      requestAnimationFrame(animate)
+      drawStar() {
+        if (!ctx) return
+        ctx.fillStyle = this.color
+        ctx.beginPath()
+        const size = this.size * 0.4
+        const spikes = 5
+        const outerRadius = size
+        const innerRadius = size * 0.4
+
+        for (let i = 0; i < spikes * 2; i++) {
+          const radius = i % 2 === 0 ? outerRadius : innerRadius
+          const angle = (i * Math.PI) / spikes
+          const x = Math.cos(angle) * radius
+          const y = Math.sin(angle) * radius
+          if (i === 0) ctx.moveTo(x, y)
+          else ctx.lineTo(x, y)
+        }
+        ctx.closePath()
+        ctx.fill()
+      }
+
+      drawSparkle() {
+        if (!ctx) return
+        ctx.strokeStyle = this.color
+        ctx.lineWidth = 2
+        const size = this.size * 0.3
+
+        // Cross sparkle
+        ctx.beginPath()
+        ctx.moveTo(-size, 0)
+        ctx.lineTo(size, 0)
+        ctx.moveTo(0, -size)
+        ctx.lineTo(0, size)
+        ctx.stroke()
+
+        // Diagonal lines
+        ctx.beginPath()
+        ctx.moveTo(-size * 0.7, -size * 0.7)
+        ctx.lineTo(size * 0.7, size * 0.7)
+        ctx.moveTo(size * 0.7, -size * 0.7)
+        ctx.lineTo(-size * 0.7, size * 0.7)
+        ctx.stroke()
+      }
+    }
+
+    // Create floating elements
+    const elements: TikTokElement[] = []
+    const elementCount = 8 // Keep it minimal
+
+    for (let i = 0; i < elementCount; i++) {
+      elements.push(new TikTokElement())
+      // Stagger initial positions
+      elements[i].y = canvas.height + i * 100
+    }
+
+    // Subtle gradient background effect
+    let gradientOffset = 0
+
+    // Animation loop
+    const animate = () => {
+      if (!ctx) return
+
+      // Clear canvas
+      ctx.fillStyle = "rgba(0, 0, 0, 0.02)"
+      ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+      // Subtle TikTok-inspired gradient background
+      gradientOffset += 0.001
+      const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height)
+      gradient.addColorStop(0, `rgba(37, 244, 238, ${0.03 + Math.sin(gradientOffset) * 0.01})`) // TikTok cyan
+      gradient.addColorStop(0.5, "rgba(0, 0, 0, 0)")
+      gradient.addColorStop(1, `rgba(255, 0, 80, ${0.03 + Math.cos(gradientOffset) * 0.01})`) // TikTok pink
+
+      ctx.fillStyle = gradient
+      ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+      // Update and draw elements
+      elements.forEach((element) => {
+        element.update()
+        element.draw()
+      })
+
+      // Add very subtle scan lines (like phone screen)
+      if (time % 60 === 0) {
+        // Only occasionally
+        ctx.strokeStyle = "rgba(255, 255, 255, 0.02)"
+        ctx.lineWidth = 1
+        for (let y = 0; y < canvas.height; y += 4) {
+          ctx.beginPath()
+          ctx.moveTo(0, y)
+          ctx.lineTo(canvas.width, y)
+          ctx.stroke()
+        }
+      }
+
+      time += 1
+      animationId = requestAnimationFrame(animate)
     }
 
     animate()
@@ -78,12 +246,18 @@ export default function Hero() {
     }
 
     window.addEventListener("resize", handleResize)
-    return () => window.removeEventListener("resize", handleResize)
+    return () => {
+      window.removeEventListener("resize", handleResize)
+      if (animationId) {
+        cancelAnimationFrame(animationId)
+      }
+    }
   }, [])
 
   return (
     <div className="relative h-screen w-full overflow-hidden pt-16">
       <canvas ref={canvasRef} className="absolute inset-0 h-full w-full bg-black" />
+
       <div className="relative z-10 flex h-full items-center px-4">
         <div className="container mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -136,8 +310,8 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.8 }}
               >
-                Vua móc
-                {/* I shoot, cut, and vibe. Turning raw clips into 🔥 content that hooks in 3 seconds or less. Trends? Caught. Aesthetic? Always. Engagement? Let the numbers talk. */}
+                
+                * I shoot, cut, and vibe. Turning raw clips into 🔥 content that hooks in 3 seconds or less. Trends? Caught. Aesthetic? Always. Engagement? Let the numbers talk. *
               </motion.p>
             </motion.div>
           </div>

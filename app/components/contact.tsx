@@ -46,9 +46,9 @@ export default function Contact() {
           viewport={{ once: true }}
           className="mx-auto max-w-2xl text-center"
         >
-          <h2 className="mb-4 text-3xl font-bold tracking-tighter sm:text-4xl">Get in Touch</h2>
+          <h2 className="mb-4 text-3xl font-bold tracking-tighter sm:text-4xl">Liên hệ hợp tác</h2>
           <p className="mb-8 text-gray-400">
-            Interested in collaborating or commissioning a piece? Let's create something amazing together.
+            Bạn có muốn hợp tác hoặc đặt hàng một tác phẩm không? Hãy cùng nhau tạo ra điều gì đó tuyệt vời.
           </p>
         </motion.div>
         <motion.div
@@ -65,9 +65,9 @@ export default function Contact() {
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Name</FormLabel>
+                    <FormLabel>Họ và Tên</FormLabel>
                     <FormControl>
-                      <Input placeholder="Your name" {...field} />
+                      <Input placeholder="Không để trống" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -80,7 +80,7 @@ export default function Contact() {
                   <FormItem>
                     <FormLabel>Email</FormLabel>
                     <FormControl>
-                      <Input placeholder="your@email.com" {...field} />
+                      <Input placeholder="@email.com" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -91,16 +91,16 @@ export default function Contact() {
                 name="message"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Message</FormLabel>
+                    <FormLabel>Tin nhắn</FormLabel>
                     <FormControl>
-                      <Textarea placeholder="Tell me about your project..." className="min-h-[120px]" {...field} />
+                      <Textarea placeholder="Dự án của bạn là gì?" className="min-h-[120px]" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
               <Button type="submit" className="w-full">
-                Send Message
+                Gửi
               </Button>
             </form>
           </Form>

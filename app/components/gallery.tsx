@@ -9,27 +9,31 @@ export default function Gallery() {
   const isInView = useInView(ref, { once: true })
 
   const images = [
-    {
-      src: "/placeholder.svg?height=600&width=400",
-      alt: "Art piece 1",
-      title: "Ethereal Dreams",
-    },
-    {
-      src: "/placeholder.svg?height=600&width=400",
-      alt: "Art piece 2",
-      title: "Urban Symphony",
-    },
-    {
-      src: "/placeholder.svg?height=600&width=400",
-      alt: "Art piece 3",
-      title: "Digital Nostalgia",
-    },
-    {
-      src: "/placeholder.svg?height=600&width=400",
-      alt: "Art piece 4",
-      title: "Abstract Reality",
-    },
-  ]
+  {
+    src: "/drhung.jpeg",
+    alt: "Art 1",
+    title: "Tiktok Dr Hưng S Beauty",
+    link: "https://www.tiktok.com/@bacsihungsbeauty",
+  },
+  {
+    src: "/bsnguyen.jpeg",
+    alt: "Art 2",
+    title: "Bác sĩ Nguyên da liễu",
+    link: "https://www.tiktok.com/@bacsidalieuthaonguyen",
+  },
+  {
+    src: "/bshoa.jpg",
+    alt: "Art 3",
+    title: "Dr Minh Hòa S Beauty",
+    link: "https://www.tiktok.com/@bsminhhoasbeauty",
+  },
+  {
+    src: "/victor.jpeg",
+    alt: "Art 4",
+    title: "Victor Làm Marketing",
+    link: "https://www.tiktok.com/@victorkhuongnguyen",
+  },
+]
 
   return (
     <section id="gallery" className="relative py-20">
@@ -40,12 +44,13 @@ export default function Gallery() {
           animate={isInView ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 0.8 }}
         >
-          Featured Works
+          Feature Works
         </motion.h2>
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {images.map((image, index) => (
+            <a key={index} href={image.link} target="_blank" rel="noopener noreferrer">
             <motion.div
-              key={index}
+              
               className="group relative overflow-hidden rounded-lg"
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -62,6 +67,7 @@ export default function Gallery() {
                 <h3 className="text-xl font-semibold text-white">{image.title}</h3>
               </div>
             </motion.div>
+            </a>
           ))}
         </div>
       </div>

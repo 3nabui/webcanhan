@@ -19,7 +19,7 @@ export default function Header() {
           {/* Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             <a href="#gallery" className="text-gray-400 hover:text-white transition-colors">
-              Gallery
+              Feature
             </a>
             <a href="#portfolio" className="text-gray-400 hover:text-white transition-colors">
               Portfolio
