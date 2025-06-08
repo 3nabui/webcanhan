@@ -68,7 +68,7 @@ export default function Contact() {
                     <FormLabel className="text-white">Họ và Tên</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="Không để trống"
+                        placeholder="Họ và tên"
                         className="bg-zinc-800 border-zinc-700 text-white placeholder:text-gray-400 focus:border-white focus:ring-white"
                         {...field}
                       />

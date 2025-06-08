@@ -62,14 +62,17 @@ export default function Portfolio() {
       <div className="container mx-auto px-4">
         <div className="mb-12 flex flex-wrap justify-center gap-4">
           {categories.map((category) => (
-            <Button
+            <button
               key={category}
-              variant={selectedCategory === category ? "default" : "outline"}
               onClick={() => setSelectedCategory(category)}
-              className="text-sm capitalize"
+              className={`px-4 py-2 rounded-md text-sm capitalize font-medium transition-all duration-200 ${
+                selectedCategory === category
+                  ? "bg-white text-black shadow-lg"
+                  : "bg-transparent border-2 border-white text-white hover:bg-white hover:text-black"
+              }`}
             >
               {category}
-            </Button>
+            </button>
           ))}
         </div>
         <motion.div layout className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
