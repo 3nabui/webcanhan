@@ -65,9 +65,13 @@ export default function Contact() {
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Họ và Tên</FormLabel>
+                    <FormLabel className="text-white">Họ và Tên</FormLabel>
                     <FormControl>
-                      <Input placeholder="Không để trống" {...field} />
+                      <Input
+                        placeholder="Không để trống"
+                        className="bg-zinc-800 border-zinc-700 text-white placeholder:text-gray-400 focus:border-white focus:ring-white"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -78,9 +82,13 @@ export default function Contact() {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email</FormLabel>
+                    <FormLabel className="text-white">Email</FormLabel>
                     <FormControl>
-                      <Input placeholder="@email.com" {...field} />
+                      <Input
+                        placeholder="@email.com"
+                        className="bg-zinc-800 border-zinc-700 text-white placeholder:text-gray-400 focus:border-white focus:ring-white"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -91,15 +99,19 @@ export default function Contact() {
                 name="message"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Tin nhắn</FormLabel>
+                    <FormLabel className="text-white">Tin nhắn</FormLabel>
                     <FormControl>
-                      <Textarea placeholder="Dự án của bạn là gì?" className="min-h-[120px]" {...field} />
+                      <Textarea
+                        placeholder="Dự án của bạn là gì?"
+                        className="min-h-[120px] bg-zinc-800 border-zinc-700 text-white placeholder:text-gray-400 focus:border-white focus:ring-white"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-              <Button type="submit" className="w-full">
+              <Button type="submit" className="w-full bg-white text-black hover:bg-gray-200">
                 Gửi
               </Button>
             </form>
