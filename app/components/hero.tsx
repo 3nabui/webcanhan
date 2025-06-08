@@ -95,16 +95,16 @@ export default function Hero() {
               transition={{ duration: 0.8 }}
             >
               <div className="relative">
-                <div className="w-80 h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-white/20 shadow-2xl">
-                  <img
-                    src="/placeholder.svg?height=400&width=400"
-                    alt="Jane Doe - Visual Artist"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                {/* Decorative ring */}
-                <div className="absolute -inset-4 rounded-full border border-white/10 animate-pulse"></div>
-              </div>
+  <div className="w-80 h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-white/20 shadow-2xl">
+    <img
+      src="/profile.jpg"
+      alt="3nabui"
+      className="w-full h-full object-cover"
+    />
+  </div>
+  {/* Decorative ring */}
+  <div className="absolute -inset-4 rounded-full border border-white/10 animate-pulse"></div>
+</div>
             </motion.div>
 
             {/* Text Content */}
@@ -136,7 +136,8 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.8 }}
               >
-                I shoot, cut, and vibe. Turning raw clips into 🔥 content that hooks in 3 seconds or less. Trends? Caught. Aesthetic? Always. Engagement? Let the numbers talk.
+                Vua móc
+                {/* I shoot, cut, and vibe. Turning raw clips into 🔥 content that hooks in 3 seconds or less. Trends? Caught. Aesthetic? Always. Engagement? Let the numbers talk. */}
               </motion.p>
             </motion.div>
           </div>

@@ -14,7 +14,7 @@ export default function Header() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between py-4">
           {/* Logo/Name */}
-          <div className="text-xl font-bold tracking-tighter">JANE DOE</div>
+          <div className="text-xl font-bold tracking-tighter">PORTFOLIO</div>
 
           {/* Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
