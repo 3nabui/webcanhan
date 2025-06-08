@@ -311,7 +311,7 @@ export default function Hero() {
                 transition={{ duration: 0.8, delay: 0.8 }}
               >
                 
-                * I shoot, cut, and vibe. Turning raw clips into 🔥 content that hooks in 3 seconds or less. Trends? Caught. Aesthetic? Always. Engagement? Let the numbers talk. *
+                {/* I shoot, cut, and vibe. Turning raw clips into 🔥 content that hooks in 3 seconds or less. Trends? Caught. Aesthetic? Always. Engagement? Let the numbers talk. */}
               </motion.p>
             </motion.div>
           </div>

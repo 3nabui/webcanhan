@@ -15,42 +15,42 @@ export default function Portfolio() {
       id: 1,
       title: "Digital Dreamscape",
       category: "digital",
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/1.jpg",
       year: "2024",
     },
     {
       id: 2,
       title: "Abstract Harmony",
       category: "paintings",
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/7.jpg",
       year: "2023",
     },
     {
       id: 3,
       title: "Metal Flow",
       category: "sculptures",
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/3.jpg",
       year: "2024",
     },
     {
       id: 4,
       title: "Neon Nights",
       category: "digital",
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/4.jpg",
       year: "2023",
     },
     {
       id: 5,
       title: "Nature's Whisper",
       category: "paintings",
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/5.jpg",
       year: "2024",
     },
     {
       id: 6,
       title: "Bronze Echo",
       category: "sculptures",
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/6.jpg",
       year: "2023",
     },
   ]
@@ -85,11 +85,11 @@ export default function Portfolio() {
               >
                 <Card className="overflow-hidden bg-zinc-900">
                   <CardContent className="p-0">
-                    <div className="group relative">
+                    <div className="group relative aspect-square overflow-hidden">
                       <img
                         src={work.image || "/placeholder.svg"}
                         alt={work.title}
-                        className="w-full transition-transform duration-500 group-hover:scale-105"
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                       <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/60 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                         <h3 className="text-xl font-semibold text-white">{work.title}</h3>
