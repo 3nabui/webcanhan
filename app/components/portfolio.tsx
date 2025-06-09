@@ -75,36 +75,37 @@ export default function Portfolio() {
             </button>
           ))}
         </div>
-        <motion.div layout className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          <AnimatePresence>
-            {filteredWorks.map((work) => (
-              <motion.div
-                key={work.id}
-                layout
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.5 }}
-              >
-                <Card className="overflow-hidden bg-zinc-900">
-                  <CardContent className="p-0">
-                    <div className="group relative aspect-square overflow-hidden">
-                      <img
-                        src={work.image || "/placeholder.svg"}
-                        alt={work.title}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                      <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/60 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                        <h3 className="text-xl font-semibold text-white">{work.title}</h3>
-                        <p className="mt-2 text-sm text-gray-300">{work.year}</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </motion.div>
+        <motion.div layout className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  <AnimatePresence>
+    {filteredWorks.map((work) => (
+      <motion.div
+        key={work.id}
+        layout
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <Card className="overflow-hidden bg-zinc-900">
+          <CardContent className="p-0">
+            <div className="group relative aspect-square overflow-hidden">
+              <img
+                src={work.image || "/placeholder.svg"}
+                alt={work.title}
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/60 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                <h3 className="text-xl font-semibold text-white">{work.title}</h3>
+                <p className="mt-2 text-sm text-gray-300">{work.year}</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </motion.div>
+    ))}
+  </AnimatePresence>
+</motion.div>
+
       </div>
     </section>
   )
