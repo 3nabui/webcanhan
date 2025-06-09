@@ -8,48 +8,48 @@ import { Card, CardContent } from "@/components/ui/card"
 export default function Portfolio() {
   const [selectedCategory, setSelectedCategory] = useState("all")
 
-  const categories = ["all", "digital", "paintings", "sculptures"]
+  const categories = ["all", "Tiktok", "Event", "Personal"]
 
   const works = [
     {
       id: 1,
       title: "Digital Dreamscape",
-      category: "digital",
+      category: "Tiktok",
       image: "/1.jpg",
       year: "2024",
     },
     {
       id: 2,
       title: "Abstract Harmony",
-      category: "paintings",
+      category: "Event",
       image: "/7.jpg",
       year: "2023",
     },
     {
       id: 3,
       title: "Metal Flow",
-      category: "sculptures",
+      category: "Tiktok",
       image: "/3.jpg",
       year: "2024",
     },
     {
       id: 4,
       title: "Neon Nights",
-      category: "digital",
+      category: "Personal",
       image: "/4.jpg",
       year: "2023",
     },
     {
       id: 5,
       title: "Nature's Whisper",
-      category: "paintings",
+      category: "Tiktok",
       image: "/5.jpg",
       year: "2024",
     },
     {
       id: 6,
       title: "Bronze Echo",
-      category: "sculptures",
+      category: "Event",
       image: "/6.jpg",
       year: "2023",
     },
