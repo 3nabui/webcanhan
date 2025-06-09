@@ -46,14 +46,13 @@ export default function Gallery() {
         >
           Feature Works
         </motion.h2>
-        <div className="flex flex-wrap justify-center gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
   {images.map((image, index) => (
     <a
       key={index}
       href={image.link}
       target="_blank"
       rel="noopener noreferrer"
-      className="w-[32%] sm:w-[48%] lg:w-[23%] min-w-[100px]"
     >
       <motion.div
         className="group relative overflow-hidden rounded-lg"
@@ -68,7 +67,7 @@ export default function Gallery() {
             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
           />
         </div>
-        <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/60 to-transparent p-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+        <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/60 to-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
           <h3 className="text-sm font-semibold text-white">{image.title}</h3>
         </div>
       </motion.div>
