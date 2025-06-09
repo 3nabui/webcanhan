@@ -33,8 +33,28 @@ export default function Contact() {
   })
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values)
-  }
+  fetch("https://formspree.io/f/mkgbjrzk", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify(values),
+  })
+    .then((response) => {
+      if (response.ok) {
+        alert("Gửi thành công! Cảm ơn bạn đã liên hệ.");
+        form.reset(); // reset form sau khi gửi thành công
+      } else {
+        alert("Đã có lỗi xảy ra. Vui lòng thử lại.");
+      }
+    })
+    .catch((error) => {
+      console.error("Lỗi khi gửi form:", error);
+      alert("Không thể gửi tin nhắn. Vui lòng thử lại sau.");
+    });
+}
+
 
   return (
     <section id="contact" className="relative overflow-hidden bg-zinc-900 py-20">
